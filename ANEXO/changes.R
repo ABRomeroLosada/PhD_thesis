@@ -19,3 +19,15 @@ no_ano<- anotation[no]
 no_table <- data.frame(GeneID=no, Annotation=no_ano)
 head(no_table)
 write.table(x = no_table, file="Non_rhythmic_genesSDLD.tsv", row.names = F)
+
+
+LD_LL_DD <- read.table("LD_LL_DD_rhythmic_genes.tsv", header=T)
+bonafide <- read.table("bona_fide_circadianLD_SD_LL_and_DD_rhythmic_genes.tsv", header = T)
+length(bonafide$x)
+
+total <- LD_LL_DD$annotation
+names(total) <- LD_LL_DD$geneID
+
+annotation_bonafide <- total[bonafide$x]
+bonafide_table <- data.frame(GeneID=bonafide$x, Annotation= annotation_bonafide)
+write.table(x = bonafide_table, file="bona_fide.tsv", row.names = F)
